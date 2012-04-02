@@ -1,9 +1,35 @@
 = bio-tabix
 
-Description goes here.
+Ruby binding for the tabix file indexing routines within the samtools package
+http://samtools.sourceforge.net/
+
+Tabix provides utilities for indexing and subsequently querying regions of interest from large tab delimited files.
+
+Files are indexed on three columns: [Group, pos1, pos2] and must be position sorted
+
+== Usage
+
+Open the file, an index will be created if it does not exist. Use :force => true to overwrite an existing index.
+
+ tabix_file = Bio::Tabix::Index.open(my_txt_file, {:s => group_col, :b => pos1_col, :e => pos2_col})
+
+
+Create a proc or lambda. This will be called with the value of each fileline
+ my_proc = lambda do |line|
+  # convert text to array and print column 7
+  puts line.split("\t")[6]
+ end
+
+Process a region
+ tabix_file.process_region(group_name, pos1, pos2, my_proc)
+
+== Installation
+'gem install bio-samtools'
+
+== Dependencies:
+-FFI (http://github.com/ffi/ffi)
 
 == Contributing to bio-tabix
- 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -14,6 +40,6 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2012 throwern. See LICENSE.txt for
+Copyright (c) 2012 Nicholas A Thrower. See LICENSE.txt for
 further details.
 

@@ -17,11 +17,13 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bio-tabix"
   gem.homepage = "http://github.com/throwern/bio-tabix"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby binding for samtools tabix}
+  gem.description = %Q{Tabix file indexing routines from the samtools package http://samtools.sourceforge.net/}
   gem.email = "throwern@msu.edu"
   gem.authors = ["throwern"]
   # dependencies defined in Gemfile
+  gem.extensions = "ext/tabix/mkrf_conf.rb"
+  #gem.executables = ["tabix","bgzip"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -32,12 +34,17 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
+# require 'rcov/rcovtask'
+# Rcov::RcovTask.new do |test|
+#   test.libs << 'test'
+#   test.pattern = 'test/**/test_*.rb'
+#   test.verbose = true
+#   test.rcov_opts << '--exclude "gems/*"'
+# end
+desc "Code coverage detail"
+task :simplecov do
+  ENV['COVERAGE'] = "true"
+  Rake::Task['spec'].execute
 end
 
 task :default => :test
