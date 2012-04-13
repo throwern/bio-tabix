@@ -23,7 +23,7 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["throwern"]
   # dependencies defined in Gemfile
   gem.extensions = "ext/tabix/mkrf_conf.rb"
-  gem.executables = ["tabix","bgzip"]
+  #gem.executables = ["tabix","bgzip"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 

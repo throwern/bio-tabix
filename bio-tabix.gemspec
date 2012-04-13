@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2012-04-13}
   s.description = %q{Tabix file indexing routines from the samtools package http://samtools.sourceforge.net/}
   s.email = %q{throwern@msu.edu}
-  s.executables = ["tabix", "bgzip"]
+  s.executables = ["bgzip", "tabix"]
   s.extensions = ["ext/tabix/mkrf_conf.rb"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "bin/bgzip",
     "bin/tabix",
     "bio-tabix.gemspec",
+    "ext/tabix/Rakefile",
     "ext/tabix/mkrf_conf.rb",
     "lib/bio-tabix.rb",
     "lib/bio/tabix/Version",
