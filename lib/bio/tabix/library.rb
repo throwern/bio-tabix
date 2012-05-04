@@ -1,6 +1,20 @@
+# == library.rb
+# This file contains the Library Class for retrieving platform specific library names
+#
+# == Contact
+#
+# Author::    Nicholas A. Thrower
+# Copyright:: Copyright (c) 2012 Nicholas A Thrower
+# License::   See LICENSE.txt for more details
+#
+
+# -
 module Bio
+  # -
   module Tabix
+    # Cross-platform library naming
     class Library
+      # return the platform specific library name
       def self.filename
         lib_os = case RUBY_PLATFORM
         when /linux/
@@ -19,7 +33,6 @@ module Bio
 
         File.join(File.expand_path(File.dirname(__FILE__)),"libtabix.#{lib_os}")
       end
-      #module_function :filename
     end
   end
 end

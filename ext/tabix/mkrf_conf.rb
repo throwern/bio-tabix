@@ -46,10 +46,10 @@ task :compile do
         cp("libtabix.1.dylib","#{path_external}")
       else raise NotImplementedError, "Tabix not supported on your platform"
     end #case
-    cp("tabix", "#{path}/../../bin/")
-    chmod 0755, "#{path}/../../bin/tabix"
-    cp("bgzip", "#{path}/../../bin/")
-    chmod 0755, "#{path}/../../bin/bgzip"
+    cp("tabix", "#{path}/../../lib/bio/tabix")
+    chmod 0755, "#{path}/../../lib/bio/tabix/tabix"
+    cp("bgzip", "#{path}/../../lib/bio/tabix")
+    chmod 0755, "#{path}/../../lib/bio/tabix/bgzip"
   end #cd
 end
   

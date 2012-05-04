@@ -5,14 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bio-tabix}
-  s.version = "0.1.0"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["throwern"]
-  s.date = %q{2012-04-13}
+  s.date = %q{2012-05-04}
   s.description = %q{Tabix file indexing routines from the samtools package http://samtools.sourceforge.net/}
   s.email = %q{throwern@msu.edu}
-  s.executables = ["bgzip", "tabix"]
   s.extensions = ["ext/tabix/mkrf_conf.rb"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -26,16 +25,14 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "bin/bgzip",
-    "bin/tabix",
     "bio-tabix.gemspec",
     "ext/tabix/Rakefile",
     "ext/tabix/mkrf_conf.rb",
     "lib/bio-tabix.rb",
     "lib/bio/tabix/Version",
     "lib/bio/tabix/binding.rb",
-    "lib/bio/tabix/index.rb",
     "lib/bio/tabix/library.rb",
+    "lib/bio/tabix/t_file.rb",
     "test/helper.rb",
     "test/test_bio-tabix.rb"
   ]

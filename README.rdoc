@@ -5,26 +5,46 @@ http://samtools.sourceforge.net/
 
 Tabix provides utilities for indexing and subsequently querying regions of interest from large tab delimited files.
 
-Files are indexed on three columns: [Group, pos1, pos2] and must be position sorted
+Files are indexed on three columns: [group, pos1, pos2] and must be position sorted
 
-== Usage
-
-Open the file, an index will be created if it does not exist. Use :force => true to overwrite an existing index.
-
- tabix_file = Bio::Tabix::Index.open(my_txt_file, {:s => group_col, :b => pos1_col, :e => pos2_col})
-
-
-Create a proc or lambda. This will be called with the value of each fileline
- my_proc = lambda do |line|
-  # convert text to array and print column 7
-  puts line.split("\t")[6]
- end
-
-Process a region
- tabix_file.process_region(group_name, pos1, pos2, my_proc)
+This gem was modeled on the bio-samtools gem: https://github.com/helios/bioruby-samtools
 
 == Installation
-'gem install bio-samtools'
+gem install bio-tabix
+
+== Usage
+Compress the file:: 
+	The following command will run the bgzip utility. 
+	You must supply input and output filenames. If you don't compress your
+	data first, it will be compressed when the file is opened appending '.bgzf' to the filename.
+	 Bio::Tabix::TFile.compress(in_file,compressed_file)
+
+Index the file:: 
+	Build an index by supplying the required columns. 
+	If you don't create an index the open method will use the default options. 
+	The opts parameter take a hash of index build options
+	- :s => sequence/group column [1]
+	- :b => beginning range column [2]
+	- :e => ending range column. Can equal :b. [3]
+	- :meta_char => comment character [#]
+	- :line_skip => number of initial lines to ignore [0]
+	 tabix_file = Bio::Tabix::TFile.build_index(compressed_file, {:s => group_col, :b => pos1_col, :e => pos2_col})
+
+
+Open the file::
+	Create a new TFile instance and open it.
+ 	 tabix_file = Bio::Tabix::TFile.open(compressed_file)
+
+Create a proc or lambda::
+	This will be called with the value of each fileline
+	 my_func = lambda do |line|
+	  # convert text to array and print column 6
+	  puts line.split("\t")[6]
+	 end
+
+Process a region::
+	Choose a group and range for your function and process it
+	 tabix_file.process_region('FirstGroup', 1, 500, my_func)
 
 == Dependencies:
 -FFI (http://github.com/ffi/ffi)

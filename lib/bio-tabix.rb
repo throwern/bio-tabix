@@ -1,2 +1,2 @@
 require 'ffi'
-require 'bio/tabix/index'
+require 'bio/tabix/t_file'
