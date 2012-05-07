@@ -1,3 +1,10 @@
+# os compiled files
+lib/bio/tabix/libtabix.*
+lib/bio/tabix/tabix
+lib/bio/tabix/bgzip
+
+Gemfile.lock
+
 # rcov generated
 coverage
 coverage.data
