@@ -13,41 +13,58 @@ This gem was modeled on the bio-samtools gem: https://github.com/helios/bioruby-
 gem install bio-tabix
 
 == Usage
-Compress the file:: 
-	The following command will run the bgzip utility. 
-	You must supply input and output filenames. If you don't compress your
-	data first, it will be compressed when the file is opened appending '.bgzf' to the filename.
-	 Bio::Tabix::TFile.compress(in_file,compressed_file)
+=== Compress your file
+The following command will run the bgzip utility. 
+You must supply input and output filenames. If you don't compress your
+data first, it will be compressed when the file is opened appending '.bgzf' to the filename.
+  Bio::Tabix::TFile.compress(in_file,compressed_file)
 
-Index the file:: 
-	Build an index by supplying the required columns. 
-	If you don't create an index the open method will use the default options. 
-	The opts parameter take a hash of index build options
-	- :s => sequence/group column [1]
-	- :b => beginning range column [2]
-	- :e => ending range column. Can equal :b. [3]
-	- :meta_char => comment character [#]
-	- :line_skip => number of initial lines to ignore [0]
-	 tabix_file = Bio::Tabix::TFile.build_index(compressed_file, {:s => group_col, :b => pos1_col, :e => pos2_col})
+=== Index the file 
+Build an index by supplying the required columns. 
+If you don't create an index the open method will use the default options. 
+The opts parameter takes a hash of index build options
+- :s => sequence/group column [1]
+- :b => beginning range column [2]
+- :e => ending range column. Can equal :b [3]
+- :meta_char => comment character [#]
+- :line_skip => number of initial lines to ignore [0]
+ tabix_file = Bio::Tabix::TFile.build_index(compressed_file, {:s => group_col, :b => pos1_col, :e => pos2_col})
 
 
-Open the file::
-	Create a new TFile instance and open it.
- 	 tabix_file = Bio::Tabix::TFile.open(compressed_file)
+=== Open your file
+Create a new TFile instance and open it.
+ tabix_file = Bio::Tabix::TFile.open(compressed_file)
 
-Create a proc or lambda::
-	This will be called with the value of each fileline
-	 my_func = lambda do |line|
-	  # convert text to array and print column 6
-	  puts line.split("\t")[6]
-	 end
+=== Create a proc or lambda
+This will be called with the value of each fileline
+ my_func = lambda do |line|
+  # convert text to array and print column index 3
+  puts line.split("\t")[3]
+ end
 
-Process a region::
-	Choose a group and range for your function and process it
-	 tabix_file.process_region('FirstGroup', 1, 500, my_func)
+=== Process a region
+Choose a group and range for your function and process it
+ tabix_file.process_region('g2', 4, 10, my_func)
+
+== Example
+=== File
+ g1	1	3	a1	b1
+ g1	2	3	a2	b2
+ g1	3	4	a3	b3
+ ...
+ g2	1	2	A1	B1
+ g2	2	4	A2	B2
+ g2	3	5	A3	B3
+ g2	4	6	A4	B4
+ ...
+
+=== Output
+ A2
+ A3
+ A4
 
 == Dependencies:
--FFI (http://github.com/ffi/ffi)
+- FFI (http://github.com/ffi/ffi)
 
 == Contributing to bio-tabix
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
