@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{bio-tabix}
+  s.name = "bio-tabix"
   s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["throwern"]
-  s.date = %q{2012-05-04}
-  s.description = %q{Tabix file indexing routines from the samtools package http://samtools.sourceforge.net/}
-  s.email = %q{throwern@msu.edu}
+  s.date = "2012-05-07"
+  s.description = "Tabix file indexing routines from the samtools package http://samtools.sourceforge.net/"
+  s.email = "throwern@msu.edu"
   s.extensions = ["ext/tabix/mkrf_conf.rb"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -36,11 +36,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_bio-tabix.rb"
   ]
-  s.homepage = %q{http://github.com/throwern/bio-tabix}
+  s.homepage = "http://github.com/throwern/bio-tabix"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Ruby binding for samtools tabix}
+  s.rubygems_version = "1.8.24"
+  s.summary = "Ruby binding for samtools tabix"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
