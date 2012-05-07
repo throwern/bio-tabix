@@ -138,6 +138,7 @@ module Bio
       # all overlapping intervals within the group will be processed in order
       def process_region(group, pos1, pos2, user_proc)
         iter = IterT.new(ti_query(t_file_p,group,pos1,pos2))
+        return if iter.null?
         len = FFI::MemoryPointer.new(:int)
         while( (s = ti_read(t_file_p, iter, len)) )
           user_proc.call(s,len)
