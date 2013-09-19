@@ -10,7 +10,7 @@ version = File.open(File.join(path_external,"Version"),'r')
 Version = version.read
 version.close
 
-url = "http://samtools.svn.sourceforge.net/viewvc/samtools/trunk/tabix/?view=tar"
+url = "https://github.com/samtools/tabix/archive/master.zip"
 TabixFile = "tabix-trunk.tar"
 
 File.open(File.join(path,"Rakefile"),"w") do |rakefile|
@@ -33,7 +33,7 @@ end
     
 task :compile do
   sh "tar xvf #{TabixFile}"
-  cd("tabix") do
+  cd("tabix-master") do
     #sh "patch < ../Makefile-bioruby.patch"
     sh "make"
     cp("libtabix.a","#{path_external}")
@@ -59,11 +59,11 @@ task :clean do
   # end
   # rm("#{TabixFile}")
   # rm_rf("tabix-#{Version}")
-  cd("tabix") do
+  cd("tabix-master") do
     sh "make clean"
   end
   rm("#{TabixFile}")
-  rm_rf("tabix")
+  rm_rf("tabix-master")
 end
 
 task :default => [:download, :compile, :clean]
