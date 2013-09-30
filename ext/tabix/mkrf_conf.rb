@@ -32,7 +32,7 @@ task :download do
 end
     
 task :compile do
-  sh "tar xvf #{TabixFile}"
+  sh "unzip #{TabixFile}"
   cd("tabix-master") do
     #sh "patch < ../Makefile-bioruby.patch"
     sh "make"
